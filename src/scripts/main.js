@@ -3,12 +3,15 @@
 // write your code here
 const logo = document.querySelector('.logo');
 
-// Promise 1 — виконується при кліку на .logo
-const promise1 = new Promise((resolve) => {
-  logo.addEventListener('click', () => {
-    resolve();
+let promise1;
+
+if (logo) {
+  promise1 = new Promise((resolve) => {
+    logo.addEventListener('click', resolve, { once: true });
   });
-});
+} else {
+  promise1 = Promise.reject(new Error('Logo element not found'));
+}
 
 // Promise 2 — відхиляється через 3 секунди
 const promise2 = new Promise((resolve, reject) => {
@@ -27,11 +30,11 @@ function handleSuccess() {
 }
 
 // Обробник помилки
-function handleError(error) {
+function handleError() {
   const div = document.createElement('div');
 
   div.className = 'message error-message';
-  div.textContent = error.message || 'Promise was rejected!';
+  div.textContent = 'Promise was rejected!';
   document.body.appendChild(div);
 }
 
