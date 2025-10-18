@@ -41,3 +41,4 @@ function handleError() {
 // Додаємо обробники до обох промісів
 promise1.then(handleSuccess).catch(handleError);
 promise2.then(handleSuccess).catch(handleError);
+// що не так в цьому демо https://YMolchanov.github.io/js_promise_basic_DOM/
